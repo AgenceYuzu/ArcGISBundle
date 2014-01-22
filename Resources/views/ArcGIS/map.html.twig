@@ -1,0 +1,30 @@
+<link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+<script src="http://js.arcgis.com/3.8/"></script>
+<script>
+    var map;
+
+    require([
+        "esri/map"
+        {% if layers %}, "esri/layers/ArcGISDynamicMapServiceLayer"{% endif %},
+        "dojo/domReady!"
+        ], function(Map{% if layers %}, ArcGISDynamicMapServiceLayer{% endif %}) {
+            map = new Map("{{ mapId }}", {
+                basemap: "{{ basemap }}",
+                center: [{{ long }},{{ lat }}], // long, lat
+                zoom: {{ zoom }},
+                //sliderStyle: "small"
+        });
+        var imageParameters = new esri.layers.ImageParameters();
+        imageParameters.format = "png32";
+        {% if layers %}
+            {% for key, layer in layers %}
+                var {{ key }} = new ArcGISDynamicMapServiceLayer('{{ layer }}', {"opacity":0.7, "imageParameters":imageParameters});
+
+                map.addLayer({{ key }});
+            {% endfor %}
+        {% endif %}
+
+    });
+</script>
+
+<div id={{ mapId }}></div>

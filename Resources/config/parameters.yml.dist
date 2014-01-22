@@ -1,0 +1,7 @@
+# Parameters for ArcGIS Online
+parameters:
+
+    arcgis_host: www.arcgis.com
+    arcgis_client_id: your_client_id
+    arcgis_client_secret: your_client_secret
+    expiration: 30

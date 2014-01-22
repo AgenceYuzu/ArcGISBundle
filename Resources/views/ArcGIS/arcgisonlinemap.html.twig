@@ -1,0 +1,46 @@
+<link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+<script>var dojoConfig = { parseOnLoad:true };</script>
+<script src="http://js.arcgis.com/3.8compact/"></script>
+<script>
+    var map;
+    require([
+        "esri/map",
+        "esri/arcgis/utils",
+        "esri/IdentityManager",
+        "esri/kernel",
+        "dojo/domReady!"
+    ], function(Map, arcgisUtils, idManager, kernel){
+        var webmap = {};
+
+        var info = JSON.parse( '{{ itemInfo | raw }}');
+        var token = {
+            "server": "http://www.arcgis.com/sharing/rest",
+            "token": "{{ token }}",
+            "ssl":false,
+            "expires":7200
+        };
+        idManager.registerToken(token);
+
+        webmap.item = {
+            "title": info.title,
+            "snippet": info.snippet,
+            "extent": info.extent
+        };
+
+        webmap.itemData = {{ itemData | raw }};
+
+        arcgisUtils.createMap(webmap, "{{ mapId }}").then(function (response) {
+            var map = response.map;
+
+
+            //add the scalebar
+            var scalebar = new Scalebar({
+                map: map,
+                scalebarUnit: "english"
+            });
+        });
+    });
+</script>
+
+<div id={{ mapId }}></div>
+

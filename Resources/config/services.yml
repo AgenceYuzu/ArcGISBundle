@@ -1,0 +1,17 @@
+parameters:
+#    yuzu_arc_gis.example.class: Yuzu\ArcGISBundle\Example
+
+services:
+#    yuzu_arc_gis.example:
+#        class: %yuzu_arc_gis.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]
+  yuzu.arc_gis.controller:
+    class: Yuzu\ArcGISBundle\Controller\ArcGISController
+    arguments:
+      - yuzu.arc_gis.map_fetcher
+
+  yuzu.arc_gis.map_fetcher:
+    class: Yuzu\ArcGISBundle\ArcGIS\MapFetcher
+    arguments:
+      - %arcgis_client_id%
+      - %arcgis_client_secret%
