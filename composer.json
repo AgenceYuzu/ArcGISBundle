@@ -1,0 +1,17 @@
+{
+    "name": "yuzu/arcgisbundle",
+    "description": "Symfony2 Bundle for ArcGIS Online",
+    "license": "GPL-3.0",
+    "authors": [
+        {
+            "name": "Agence Yuzu"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=5.3.3",
+        "symfony/symfony": "~2.3",
+        "symfony-cmf/routing": "1.1.*"
+    },
+    "target-dir": "Yuzu/ArcGISBundle"
+}
