@@ -10,8 +10,7 @@
     "minimum-stability": "dev",
     "require": {
         "php": ">=5.3.3",
-        "symfony/symfony": "~2.3",
-        "symfony-cmf/routing": "1.1.*"
+        "symfony/symfony": "~2.3"
     },
     "target-dir": "Yuzu/ArcGISBundle"
 }
