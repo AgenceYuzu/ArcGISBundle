@@ -1,0 +1,19 @@
+<script type="text/javascript" language="javascript">
+        var info = JSON.parse( '{{ itemInfo | raw }}');
+        var creation_date = new Date(info.created);
+        var update_date = new Date(info.modified);
+
+        jQuery(document).ready(
+                function() {
+                    $('#title').text(info.title);
+                    $('#created').text( creation_date.getDate() + "/" + (creation_date.getMonth() + 1) + "/" + creation_date.getFullYear() );
+                    $('#updated').text( update_date.getDate() + "/" + (update_date.getMonth() + 1) + "/" + update_date.getFullYear() );
+                });
+</script>
+
+<ul>
+    <li>Title: <span id="title"></span></li>
+    <li>Created: <span id="created"></span></li>
+    <li>Updated: <span id="updated"></span></li>
+</ul>
+

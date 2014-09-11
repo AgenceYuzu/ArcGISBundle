@@ -46,4 +46,16 @@ class ArcGISController extends Controller
                                                                                         'itemData' => $itemData));
     }
 
+    public function ArcGisOnlineMapInfoAction($itemId, $template=null)
+    {
+        if ($template == null)
+            $template = 'YuzuArcGISBundle:ArcGIS:arcgisonlinemapinfo.html.twig';
+
+        //Retrieve item Data (json format)
+        $itemInfo = $this->get('yuzu.arc_gis.map_fetcher')->getItemInfo($itemId);
+
+        //To the view
+        return $this->render($template, array( 'itemInfo' => $itemInfo ));
+    }
+
 }
