@@ -28,8 +28,11 @@ class ArcGISController extends Controller
                                                                             'layers' => $layers));
     }
 
-    public function ArcGisOnlineMapAction($mapId, $itemId )
+    public function ArcGisOnlineMapAction($mapId, $itemId, $template=null)
     {
+        if ($template == null)
+            $template = 'YuzuArcGISBundle:ArcGIS:arcgisonlinemap.html.twig';
+
         $access_token = $this->get('yuzu.arc_gis.map_fetcher')->getToken();
 
         //Retrieve item Data (json format)
@@ -39,11 +42,11 @@ class ArcGISController extends Controller
         $itemData = $this->get('yuzu.arc_gis.map_fetcher')->getItemData($itemId);
 
         //To the view
-        return $this->render('YuzuArcGISBundle:ArcGIS:arcgisonlinemap.html.twig', array('mapId' => $mapId,
-                                                                                        'itemId' => $itemId,
-                                                                                        'token' => $access_token,
-                                                                                        'itemInfo' => $itemInfo,
-                                                                                        'itemData' => $itemData));
+        return $this->render($template, array('mapId' => $mapId,
+                                              'itemId' => $itemId,
+                                              'token' => $access_token,
+                                              'itemInfo' => $itemInfo,
+                                              'itemData' => $itemData));
     }
 
     public function ArcGisOnlineMapInfoAction($itemId, $template=null)
