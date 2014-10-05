@@ -1,6 +1,6 @@
-<link rel="stylesheet" href="http://js.arcgis.com/3.8/js/esri/css/esri.css">
+<link rel="stylesheet" href="http://js.arcgis.com/3.10/js/esri/css/esri.css">
 <script>var dojoConfig = { parseOnLoad:true };</script>
-<script src="http://js.arcgis.com/3.8compact/"></script>
+<script src="http://js.arcgis.com/3.10compact/"></script>
 <script>
     var map;
     require([
@@ -32,12 +32,6 @@
         arcgisUtils.createMap(webmap, "{{ mapId }}").then(function (response) {
             var map = response.map;
 
-
-            //add the scalebar
-            var scalebar = new Scalebar({
-                map: map,
-                scalebarUnit: "english"
-            });
         });
     });
 </script>
